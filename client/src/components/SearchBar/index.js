@@ -17,17 +17,18 @@ class SearchBar extends Component {
     link: "",
     authorSearchTerm: "",
     titleSearchTerm: "red rising",
+    id: ""
   }
 
   handleKeywordInputChange = event => {
-    const { name , value } = event.target;
+    const { value } = event.target;
     this.setState({
       keyword: value
     });
   };
 
   handleAuthorInputChange = event => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     this.setState({
       authorSearch: value
     });
@@ -36,17 +37,11 @@ class SearchBar extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.searchForBook(this.state.keyword, this.state.authorSearchTerm)
-    console.log(this.state.keyword, "--", this.state.authorSearch )
-  }
-
-  componentDidMount () {
-
   }
 
   searchForBook(search, author) {
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}+inauthor:${author}&key=` + APIkey)
       .then(response => {
-
         this.setState({
           books: response.data.items,
           title: response.data.items[1].volumeInfo.title,
@@ -55,13 +50,6 @@ class SearchBar extends Component {
           image: response.data.items[1].volumeInfo.imageLinks.thumbnail,
           link: response.data.items[1].accessInfo.webReaderLink
         })
-
-        console.log(response.data)
-        console.log("Title - ", response.data.items[0].volumeInfo.title)
-        console.log("Author(s) - ", response.data.items[0].volumeInfo.authors)
-        console.log("Description - ", response.data.items[0].volumeInfo.description)
-        console.log("Image - ", response.data.items[0].volumeInfo.imageLinks.thumbnail)
-        console.log("Link - ", response.data.items[0].accessInfo.webReaderLink)
       })
       .catch(e => {
         console.log(e)
@@ -70,7 +58,6 @@ class SearchBar extends Component {
 
   render() {
     return (
-
       <div id="box" className="container-fluid">
         <h1 id="title" className="jumbotron bg-primary text-center text-warning">Search for Books by Title, Author or Keywords</h1>
         <form className="jumbotron bg-primary">
@@ -91,7 +78,9 @@ class SearchBar extends Component {
             if (book.volumeInfo.imageLinks) {
               return (
                 <div>
-                  <BookCards title={book.volumeInfo.title}
+                  <BookCards 
+                    key={book.accessInfo.id}
+                    title={book.volumeInfo.title}
                     authors={book.volumeInfo.authors}
                     thumbnail={book.volumeInfo.imageLinks.thumbnail}
                     description={book.volumeInfo.description}
