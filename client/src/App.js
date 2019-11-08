@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import BookCards from "./components/BookCards"
 const APIkey = "AIzaSyC5MbQE-0lUqvgXhxVRhDCK05t0nvMrphM";
 
 
@@ -8,24 +8,30 @@ const APIkey = "AIzaSyC5MbQE-0lUqvgXhxVRhDCK05t0nvMrphM";
 
 class App extends Component {
 
-state = {
-  title: "",
-  authors: [],
-  description: "",
-  image: "",
-  link: ""
-}
+  state = {
+    books: [],
+    title: "",
+    authors: [],
+    description: "",
+    image: "",
+    link: "",
+    authorSearchTerm: "",
+    titleSearchTerm: "red rising",
+  }
 
   componentDidMount() {
-    axios.get('https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key='+ APIkey)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.titleSearchTerm}+inauthor:${this.state.authorSearchTerm}&key=` + APIkey)
       .then(response => {
+
         this.setState({
+          books: response.data.items,
           title: response.data.items[1].volumeInfo.title,
           authors: response.data.items[1].volumeInfo.authors,
           description: response.data.items[1].volumeInfo.description,
           image: response.data.items[1].volumeInfo.imageLinks.thumbnail,
           link: response.data.items[1].accessInfo.webReaderLink
         })
+
         console.log(response.data)
         console.log("Title - ", response.data.items[0].volumeInfo.title)
         console.log("Author(s) - ", response.data.items[0].volumeInfo.authors)
@@ -40,13 +46,20 @@ state = {
 
   render() {
     return (
-      <div >
-        <h1>{this.state.title}</h1>
-        <h2>{this.state.authors.slice(" ")}</h2>
-        <h3>{this.state.description}</h3>
-        <img src={this.state.image} alt=""/>
-        <a href={this.state.link}>Link to online book</a>
-      </div>
+      this.state.books.map(book => {
+        if (book.volumeInfo.imageLinks) {
+          return (
+            <div>
+              <BookCards title={book.volumeInfo.title}
+                authors={book.volumeInfo.authors}
+                thumbnail={book.volumeInfo.imageLinks.thumbnail}
+                description={book.volumeInfo.description}
+                link={book.accessInfo.webReaderLink}
+              />
+            </div>
+          )
+        }
+      })
     );
   }
 }
