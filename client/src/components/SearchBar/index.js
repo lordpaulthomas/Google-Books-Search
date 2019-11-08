@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import BookCards from "./../BookCards"
 import axios from "axios"
+import './style.css'
 const APIkey = "AIzaSyC5MbQE-0lUqvgXhxVRhDCK05t0nvMrphM";
 
 
@@ -16,7 +17,7 @@ class SearchBar extends Component {
     titleSearchTerm: "red rising",
   }
 
-  componentDidMount() {
+  searchForBook(search, author) {
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.titleSearchTerm}+inauthor:${this.state.authorSearchTerm}&key=` + APIkey)
       .then(response => {
 
@@ -44,8 +45,8 @@ class SearchBar extends Component {
   render() {
     return (
 
-      <div>
-        <h1 className="text-center text-warning">Search for Books by Title, Author or Keywords</h1>
+      <div id="box" className="container-fluid">
+        <h1 id="title" className="jumbotron bg-primary text-center text-warning">Search for Books by Title, Author or Keywords</h1>
         <form className="jumbotron bg-primary">
           <div className="form-row">
             <div className="col">

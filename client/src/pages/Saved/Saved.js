@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 
 import NavBar from './../../components/NavBar';
-import SearchBar from './../../components/SearchBar';
 import Footer from './../../components/Footer';
-import BookCards from './../../components/BookCards';
 
-class Search extends Component {
+class Saved extends Component {
   render() {
     return (
       <div>
         <NavBar />
+        <div id="title" className="jumbotron bg-primary text-warning">
+          Your Books
+        </div>
         <Footer />
       </div>
     )
   }
 }
 
-export default Search
+export default Saved
