@@ -7,6 +7,8 @@ const APIkey = "AIzaSyC5MbQE-0lUqvgXhxVRhDCK05t0nvMrphM";
 
 class SearchBar extends Component {
   state = {
+    keyword: "",
+    authorSearch: "",
     books: [],
     title: "",
     authors: [],
@@ -17,8 +19,32 @@ class SearchBar extends Component {
     titleSearchTerm: "red rising",
   }
 
+  handleKeywordInputChange = event => {
+    const { name , value } = event.target;
+    this.setState({
+      keyword: value
+    });
+  };
+
+  handleAuthorInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      authorSearch: value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.searchForBook(this.state.keyword, this.state.authorSearchTerm)
+    console.log(this.state.keyword, "--", this.state.authorSearch )
+  }
+
+  componentDidMount () {
+
+  }
+
   searchForBook(search, author) {
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.titleSearchTerm}+inauthor:${this.state.authorSearchTerm}&key=` + APIkey)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}+inauthor:${author}&key=` + APIkey)
       .then(response => {
 
         this.setState({
@@ -50,14 +76,14 @@ class SearchBar extends Component {
         <form className="jumbotron bg-primary">
           <div className="form-row">
             <div className="col">
-              <input type="text" className="form-control" placeholder="Title or Keyword" />
+              <input onChange={this.handleKeywordInputChange} type="text" className="form-control" placeholder="Title or Keyword" />
             </div>
             <div className="col">
-              <input type="text" className="form-control" placeholder="Author" />
+              <input onChange={this.handleAuthorInputChange} type="text" className="form-control" placeholder="Author" />
             </div>
           </div>
           <div className="text-center">
-            <button className="btn btn-outline-warning mt-3 col-8">Submit</button>
+            <button onClick={this.handleSubmit} className="btn btn-outline-warning mt-3 col-8">Submit</button>
           </div>
         </form>
         {

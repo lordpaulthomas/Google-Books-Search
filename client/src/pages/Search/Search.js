@@ -8,7 +8,7 @@ import BookCards from './../../components/BookCards';
 class Search extends Component {
   render() {
     return (
-      <div>
+      <div className="bg-warning">
         <NavBar />
         <SearchBar />
         <Footer />
