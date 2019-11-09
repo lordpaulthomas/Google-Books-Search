@@ -3,8 +3,18 @@ import API from "../../utils/API"
 
 class SavedBooks extends Component {
   state = {
-    details: "collapse"
+    details: "collapse.show"
   }
+
+  showDetails(details){
+    if(details === "collapse.show"){
+      this.setState({ details: "collapse"})
+    }
+    else{
+      this.setState({details: "collapse.show"})
+    }
+  }
+
 
   deleteSavedArticle = id => {
     API.deleteSavedBooks(id)
@@ -27,9 +37,9 @@ class SavedBooks extends Component {
                 <a className="row card-text p-2" href={this.props.link}>Link to online book</a>
                 <button onClick={() => this.deleteSavedArticle(this.props._id)} className="row btn btn-outline-danger">Remove</button>
                 <p>
-                  <button className="row mt-2 p-2 btn btn-primary"
+                  <button onClick={()=> this.showDetails()} className="row mt-2 p-2 btn btn-primary"
                     type="button"
-                    data-toggle="collapse"
+                    data-toggle={this.state.details}
                     data-target="#bookDetails"
                     aria-expanded="false"
                     aria-controls="collapseExample"

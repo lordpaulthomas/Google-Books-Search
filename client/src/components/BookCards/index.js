@@ -3,7 +3,7 @@ import API from "../../utils/API"
 
 class BookCards extends Component {
   state = {
-    details: "collapse.show"
+    details: "collapse"
   }
 
   saveBook = props => {
