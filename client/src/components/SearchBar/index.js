@@ -73,12 +73,13 @@ class SearchBar extends Component {
             <button onClick={this.handleSubmit} className="btn btn-outline-warning mt-3 col-8">Submit</button>
           </div>
         </form>
-        {
-          this.state.books.map(book => {
-            if (book.volumeInfo.imageLinks) {
-              return (
-                <div>
-                  <BookCards 
+        <div className="container">
+          {
+            this.state.books.map(book => {
+              if (book.volumeInfo.imageLinks) {
+                return (
+
+                  <BookCards
                     key={book.accessInfo.id}
                     title={book.volumeInfo.title}
                     authors={book.volumeInfo.authors}
@@ -86,11 +87,12 @@ class SearchBar extends Component {
                     description={book.volumeInfo.description}
                     link={book.accessInfo.webReaderLink}
                   />
-                </div>
-              )
-            }
-          })
-        }
+
+                )
+              }
+            })
+          }
+        </div>
       </div>
     )
   }

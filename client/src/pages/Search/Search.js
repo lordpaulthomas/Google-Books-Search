@@ -10,7 +10,9 @@ class Search extends Component {
     return (
       <div className="bg-warning">
         <NavBar />
-        <SearchBar />
+        <div className="text-center">
+          <SearchBar />
+        </div>
         <Footer />
       </div>
     )
