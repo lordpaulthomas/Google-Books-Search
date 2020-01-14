@@ -1,12 +1,12 @@
 # Google Books Search
 
-Licensing Information: READ LICENSE
+##### Licensing Information: READ LICENSE
 ---
-Project source can be downloaded from https://github.com/lordpaulthomas/Google-Books-Search
+##### Project source can be downloaded from https://github.com/lordpaulthomas/Google-Books-Search
 ----
 Author
 -----------
-Paul Thomas
+# Paul Thomas
 
 
 Description of App
@@ -38,7 +38,7 @@ navigate to desired folder to store app.
 
 
 
-**_Screen Shot of App_**
+## **_Screen Shot of App_**
 
 ![database](./assets/screenShot.png)
 
