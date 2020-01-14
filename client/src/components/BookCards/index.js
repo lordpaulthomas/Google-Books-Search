@@ -78,7 +78,7 @@ class BookCards extends Component {
         </div>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}></ModalHeader>
-          <ModalBody id="modal-body">
+          <ModalBody className="text-center" id="modal-body">
             <h1>Book Saved</h1>
           </ModalBody>
           <ModalFooter />

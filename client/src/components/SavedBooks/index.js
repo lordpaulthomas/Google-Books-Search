@@ -16,7 +16,6 @@ class SavedBooks extends Component {
   }
 
   showDetails(details) {
-    this.toggle()
     if (details === "collapse.show") {
       this.setState({ details: "collapse" })
     }
@@ -31,8 +30,8 @@ class SavedBooks extends Component {
       .then(res => {
         this.props.loadArticles()
       })
-      .then(this.toggle())
       .catch(err => console.log(err))
+    this.toggle()
   }
 
   render() {
@@ -72,7 +71,7 @@ class SavedBooks extends Component {
         </div>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}></ModalHeader>
-          <ModalBody id="modal-body">
+          <ModalBody className="text-center"id="modal-body">
             <h1>Book Removed</h1>
           </ModalBody>
           <ModalFooter />
