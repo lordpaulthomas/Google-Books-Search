@@ -6,7 +6,7 @@
 ----
 Author
 -----------
-Paul Thomas
+# Paul Thomas
 
 
 Description of App
