@@ -64,6 +64,8 @@ Node Dependencies:
    
    ```"reactstrap": "^8.2.0"```
 
+   ```"serialize-javascript": "^2.1.2"```
+
 
 **Client Side**
 
