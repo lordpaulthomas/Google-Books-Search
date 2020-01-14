@@ -4,7 +4,9 @@ module.exports = {
   findAll: function (req, res) {
     db.Saved
       .find()
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {
+        res.json(dbModel)
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function (req, res) {

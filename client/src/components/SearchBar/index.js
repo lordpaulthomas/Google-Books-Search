@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import BookCards from "./../BookCards"
 import axios from "axios"
 import './style.css'
+import {Loader} from 'react-loader-spinner';
 const APIkey = "AIzaSyC5MbQE-0lUqvgXhxVRhDCK05t0nvMrphM";
 
 
@@ -42,6 +43,19 @@ class SearchBar extends Component {
   searchForBook(search, author) {
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}+inauthor:${author}&key=` + APIkey)
       .then(response => {
+
+        if(!response){
+              return (
+                <Loader
+                    type="Oval"
+                    color="purple"
+                    height={100}
+                    width={100}
+                    timeout={3000}
+                />
+            );
+        }
+
         this.setState({
           books: response.data.items,
           title: response.data.items[1].volumeInfo.title,
@@ -75,10 +89,10 @@ class SearchBar extends Component {
         </form>
         <div className="container">
           {
+            
             this.state.books.map(book => {
               if (book.volumeInfo.imageLinks) {
                 return (
-
                   <BookCards
                     key={book.accessInfo.id}
                     title={book.volumeInfo.title}

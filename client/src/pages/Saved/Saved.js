@@ -27,22 +27,24 @@ class Saved extends Component {
         <div id="title" className="jumbotron bg-primary text-warning">
           Your Books
         </div>
-        {
-          this.state.savedBooks.map(book => {
-            return (
-              <SavedBooks
-                _id={book._id}
-                key={book._id}
-                title={book.title}
-                authors={book.authors}
-                description={book.description}
-                thumbnail={book.image}
-                link={book.link}
-                loadArticles={this.loadArticles}
-              />
-            )
-          })
-        }
+        <div className="container">
+          {
+            this.state.savedBooks.map(book => {
+              return (
+                <SavedBooks
+                  _id={book._id}
+                  key={book._id}
+                  title={book.title}
+                  authors={book.authors}
+                  description={book.descriptions}
+                  thumbnail={book.image}
+                  link={book.link}
+                  loadArticles={this.loadArticles}
+                />
+              )
+            })
+          }
+        </div>
         <Footer />
       </div>
     )
