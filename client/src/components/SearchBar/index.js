@@ -73,7 +73,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div id="box" className="container-fluid">
-        <h1 id="title" className="jumbotron bg-primary text-center text-warning">Search for Books by Title, Author or Keywords</h1>
+        <h1 id="title" className="jumbotron bg-primary text-center text-warning">Search for Books</h1>
         <form className="jumbotron bg-primary">
           <div className="form-row">
             <div className="col">
